@@ -1,0 +1,32 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCE = [
+    {
+        title: "Ingeniero Junior en NTT DATA",
+        description: "Actualmente me encuentro ejerciendo el puesto de Ingeniero Junior en NTT DATA, donde estoy desarrollando mis cualidades como desarrollador en un gran proyecto. Estoy aplicando y extendiendo mis conocimientos sobre Java, Bases de datos SQL y Angular entre muchos otros, además de trabajar en un gran empleando metodologías Agile.",
+        date: "Junio 2024",
+    },
+    {
+        title: "Graduado en Ingeniería del Software",
+        description: "Valoro enormemente mi etapa en la universidad, me ha hecho crecer tanto personal como profesionalmente. Durante mi trayecto he podido especializarme en los principales pilares de la Ingeniería del Software como el desarrollo de software empresarial, desarrollo web y móvil, gestión de proyectos, devOps y sistemas entre otros. También he aprendido acerca de otros campos como Algoritmia, Modelos de optimización o Ciencia de datos.",
+        date: "Junio 2024",
+    },
+    {
+        title: "Programador en prácticas en NTT DATA",
+        description:
+            "Como primer contacto con el mundo laboral en el ámbito tecnológico, pude desarrollar mis habilidades en desarrollo backend con Java en una arquitectura basada en servicios, SpringBoot, Bases de datos SQL (Oracle y PostgreSQL), testing con JUnit, Mockito y Powermock. Además de adquirir soltura en equipos de desarrollo Agile en herramientas de sistemas de control de versiones como Git y Subversion, además de herramientas de integración y despliegue como Jenkins.",
+        date: "Enero 2024",
+    },
+];
+---
+
+<ol class="relative border-s border-gray-200 dark:border-gray-700">
+    {
+        EXPERIENCE.map((exp) => (
+            <li class="mb-10 ms-4">
+                <ExperienceItem {...exp} />
+            </li>
+        ))
+    }
+</ol>

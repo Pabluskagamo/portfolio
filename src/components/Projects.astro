@@ -1,0 +1,36 @@
+---
+import ProjectCard from "./ProjectCard.astro"
+
+const project = {
+    title: "SwiftDo",
+    description: 'SwiftDo es una aplicación de organización personal que hace que las tareas y proyectos de tu día a día sean fácilmente recopilables, accesibles y priorizables, mejorando así tu productividad. \nPuedes utilizar SwiftDo en cualquier plataforma tanto en entornos de escritorio como de dispositivos móviles. \nEl proyecto surgió como mi trabajo de fin de grado (TFG) junto con varios compañeros. A día de hoy la aplicación es de código abierto y sigue en desarrollo.',
+    link: "https://github.com/SwiftDo-TFG/SwiftDo/tree/main",
+    imgUrl: "https://github.com/SwiftDo-TFG/SwiftDo/blob/main/Frontend/src/assets/icon.png?raw=true"
+}
+
+const project2 = {
+    title: "Try&Catch",
+    description: "Try&Catch es una plataforma donde los estudiantes universitarios pueden formular preguntas y obtener respuestas de otros usuarios, lo que les permite ampliar su conocimiento y resolver dudas académicas.  \nLa plataforma también ofrece información sobre universidades y carreras, y cuenta con un equipo de administradores que gestionan la plataforma y atienden las solicitudes de los usuarios.",
+    link: "https://github.com/Alejandrodlrio/IW",
+    imgUrl: "/img/logo_TryCatch.png"
+}
+
+const projectList = [project, project2]
+
+---
+
+<div class="flex flex-col">
+    {projectList.map(project => {
+        return (
+            <div class="mb-10">
+                <ProjectCard {...project}>
+                    {project.description.split("\n").map(parag => {
+                        return(<p class="mb-3 font-normal break-words text-gray-700 dark:text-gray-400">{parag}</p>)
+                    })}
+                </ProjectCard>
+            </div>
+        )
+    })}
+</div>
+
+

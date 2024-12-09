@@ -1,0 +1,71 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/Card.astro";
+import Badge from "../components/Badge.astro";
+import SectionContainer from "../components/SectionContainer.astro";
+import Experience from "../components/Experience.astro";
+import IconPill from "../components/IconPill.astro";
+import LinkedinIcon from "../components/icons/Linkedin.astro";
+import GithubIcon from "../components/icons/Github.astro"
+import MailIcon from "../components/icons/Mail.astro"
+import ThemeSelector from "../components/ThemeSelector.astro";
+import AboutMe from "../components/AboutMe.astro";
+import Projects from "../components/Projects.astro";
+---
+
+<Layout
+	title="Portfolio Pablo Gamo."
+	description="Portfolio para contratar a Pablo Gamo"
+>
+	<main>
+		<SectionContainer class="py-20 pb-20">
+			<img
+				src="/img/FotoPerfil.jpg"
+				alt="alt porfolio photo"
+				class="rounded-full size-40 mb-4"
+			/>
+			<h1
+				class="text-white text-4xl font-bold flex flex-row gap-x-4"
+			>
+				¡Hola! Soy Pablo Gamo <div
+					class="flex justify-content items-center"
+				>
+				</div>
+			</h1>
+			<nav class="flex gap-4 mt-8 flex-wrap">
+				<IconPill href="https://www.linkedin.com/in/pablo-gamo-gonz%C3%A1lez-b48223267/">
+					<LinkedinIcon class="size-4 md:size-6" />
+					LinkedIn
+				</IconPill>
+				<IconPill href="https://github.com/pabluskagamo">
+					<GithubIcon class="size-4 md:size-6" />
+					GitHub
+				</IconPill>
+				<IconPill href="mailto:pgamogonzalez@gmail.com">
+					<MailIcon class="size-4 md:size-6" />
+					pgamogonzalez@gmail.com
+				</IconPill>
+			</nav>
+		</SectionContainer>
+		<SectionContainer class="mb-10" id="aboutme">
+			<h2 class="text-3xl font-semibold items-center mb-6 underline">
+				Sobre mi
+			</h2>
+			<AboutMe/>
+		</SectionContainer>
+		<SectionContainer class="mb-20" id="experience">
+			<h2 class="text-3xl font-semibold items-center mb-6 underline">
+				Experiencia
+			</h2>
+			<Experience />
+		</SectionContainer>
+		<SectionContainer class="pb-40" id="projects">
+			<h2 class="text-3xl font-semibold items-center mb-6 underline">
+				Proyectos
+			</h2>
+			<Projects />
+		</SectionContainer>
+		<ThemeSelector/>
+	</main>
+</Layout>
+
