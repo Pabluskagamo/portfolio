@@ -1,11 +1,18 @@
 ---
+import IconPill from "./IconPill.astro";
 import ProjectCard from "./ProjectCard.astro"
+import { TbBrandReactNative } from "react-icons/tb";
+import { FaNodeJs, FaJava, FaBootstrap  } from "react-icons/fa";
+import { BiLogoPostgresql, BiLogoSpringBoot  } from "react-icons/bi";
+
+
+
 
 const project = {
     title: "SwiftDo",
     description: 'SwiftDo es una aplicación de organización personal que hace que las tareas y proyectos de tu día a día sean fácilmente recopilables, accesibles y priorizables, mejorando así tu productividad. \nPuedes utilizar SwiftDo en cualquier plataforma tanto en entornos de escritorio como de dispositivos móviles. \nEl proyecto surgió como mi trabajo de fin de grado (TFG) junto con varios compañeros. A día de hoy la aplicación es de código abierto y sigue en desarrollo.',
     link: "https://github.com/SwiftDo-TFG/SwiftDo/tree/main",
-    imgUrl: "https://github.com/SwiftDo-TFG/SwiftDo/blob/main/Frontend/src/assets/icon.png?raw=true"
+    imgUrl: "https://github.com/SwiftDo-TFG/SwiftDo/blob/main/Frontend/src/assets/icon.png?raw=true",
 }
 
 const project2 = {
@@ -20,17 +27,44 @@ const projectList = [project, project2]
 ---
 
 <div class="flex flex-col">
-    {projectList.map(project => {
-        return (
-            <div class="mb-10">
-                <ProjectCard {...project}>
-                    {project.description.split("\n").map(parag => {
-                        return(<p class="mb-3 font-normal break-words text-gray-700 dark:text-gray-400">{parag}</p>)
-                    })}
-                </ProjectCard>
+    <div class="mb-10">
+        <ProjectCard {...project}>
+            {project.description.split("\n").map(parag => {
+                return(<p class="mb-3 font-normal break-words text-gray-700 dark:text-gray-400">{parag}</p>)
+            })}
+            <p class="pt-1 pb-2 text-xs text-gray-700 dark:text-gray-400"><b>{project.title}</b> fue desarrollado con: </p>
+            <div class="flex flex-row gap-4 mb-2">
+                <IconPill small={true}>
+					React Native <TbBrandReactNative/>
+				</IconPill>
+                <IconPill small={true}>
+					Node.js <FaNodeJs/>
+				</IconPill>
+                <IconPill small={true}>
+					Postgresql <BiLogoPostgresql />
+				</IconPill>
             </div>
-        )
-    })}
+        </ProjectCard>
+    </div>
+    <div class="mb-10">
+        <ProjectCard {...project2}>
+            {project.description.split("\n").map(parag => {
+                return(<p class="mb-3 font-normal break-words text-gray-700 dark:text-gray-400">{parag}</p>)
+            })}
+            <p class="pt-1 pb-2 text-xs text-gray-700 dark:text-gray-400"><b>{project2.title}</b> fue desarrollado con: </p>
+            <div class="flex flex-row gap-4 mb-2">
+                <IconPill small={true}>
+					Java <FaJava/>
+				</IconPill>
+                <IconPill small={true}>
+					Springboot <BiLogoSpringBoot />
+				</IconPill>
+                <IconPill small={true}>
+					Bootstrap <FaBootstrap />
+				</IconPill>
+            </div>
+        </ProjectCard>
+    </div>
 </div>
 
 
