@@ -3,30 +3,48 @@ import ExperienceItem from "./ExperienceItem.astro";
 
 const EXPERIENCE = [
     {
-        title: "Ingeniero Junior en NTT DATA",
-        description: "Actualmente me encuentro ejerciendo el puesto de Ingeniero Junior en NTT DATA, donde estoy desarrollando mis cualidades como desarrollador en un gran proyecto. Estoy aplicando y extendiendo mis conocimientos sobre Java, Bases de datos SQL y Angular entre muchos otros, además de trabajar en un gran empleando metodologías Agile.",
-        date: "Junio 2024",
-    },
-    {
-        title: "Graduado en Ingeniería del Software",
-        description: "Valoro enormemente mi etapa en la universidad, me ha hecho crecer tanto personal como profesionalmente. Durante mi trayecto he podido especializarme en los principales pilares de la Ingeniería del Software como el desarrollo de software empresarial, desarrollo web y móvil, gestión de proyectos, devOps y sistemas entre otros. También he aprendido acerca de otros campos como Algoritmia, Modelos de optimización o Ciencia de datos.",
-        date: "Junio 2024",
-    },
-    {
-        title: "Programador en prácticas en NTT DATA",
+        title: "Programador Analista · NTT DATA",
         description:
-            "Como primer contacto con el mundo laboral en el ámbito tecnológico, pude desarrollar mis habilidades en desarrollo backend con Java en una arquitectura basada en servicios, SpringBoot, Bases de datos SQL (Oracle y PostgreSQL), testing con JUnit, Mockito y Powermock. Además de adquirir soltura en equipos de desarrollo Agile en herramientas de sistemas de control de versiones como Git y Subversion, además de herramientas de integración y despliegue como Jenkins.",
-        date: "Enero 2024",
+            "Evolutivos de alto impacto para un sistema crítico de un importante cliente del sector energético nacional, participando en el ciclo completo de desarrollo, desde requisitos y diseño hasta SAT y puesta en producción.",
+        bullets: [
+            "Análisis de requisitos, contacto con cliente y diseño de soluciones.",
+            "Desarrollo y testing con Java, Oracle SQL y Angular.",
+            "Coordinación de equipos de programadores y seguimiento de evolutivos.",
+            "Introducción de IA generativa y agentes (Codex) mediante skills y automatizaciones aplicadas al desarrollo y ejecución de casos de uso.",
+        ],
+        date: "Actualidad",
+    },
+    {
+        title: "Programador Junior · NTT DATA",
+        description:
+            "Desarrollo full-stack y mantenimiento evolutivo de un sistema legacy crítico para un importante cliente del sector energético nacional.",
+        bullets: [
+            "Desarrollo con Java, Oracle SQL y Angular.",
+            "Testing unitario con JUnit y gestión de código con Git y Subversion.",
+            "Procesos CI/CD mediante Jenkins.",
+            "Gestión y resolución de incidencias con ServiceNow.",
+        ],
+        date: "Abril 2024 - Septiembre 2025",
+    },
+    {
+        title: "Becario / Prácticas · NTT DATA",
+        description:
+            "Desarrollo backend con Java y Spring Boot en arquitecturas de microservicios, participando en equipos Agile y en procesos de testing y CI/CD.",
+        bullets: [
+            "Java, Spring Boot, Oracle y PostgreSQL.",
+            "Testing con JUnit, Mockito y PowerMock.",
+            "Control de versiones con Git y Subversion.",
+            "CI/CD mediante Jenkins.",
+        ],
+        date: "Mayo 2023 - Enero 2024",
     },
 ];
 ---
 
 <ol class="relative border-s border-gray-200 dark:border-gray-700">
-    {
-        EXPERIENCE.map((exp) => (
-            <li class="mb-10 ms-4">
-                <ExperienceItem {...exp} />
-            </li>
-        ))
-    }
+    {EXPERIENCE.map((exp) => (
+        <li class="mb-10 ms-4 last:mb-0">
+            <ExperienceItem {...exp} />
+        </li>
+    ))}
 </ol>

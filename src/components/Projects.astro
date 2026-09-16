@@ -1,70 +1,45 @@
 ---
 import IconPill from "./IconPill.astro";
-import ProjectCard from "./ProjectCard.astro"
+import ProjectCard from "./ProjectCard.astro";
 import { TbBrandReactNative } from "react-icons/tb";
-import { FaNodeJs, FaJava, FaBootstrap  } from "react-icons/fa";
-import { BiLogoPostgresql, BiLogoSpringBoot  } from "react-icons/bi";
-
-
-
+import { FaNodeJs, FaJava, FaBootstrap } from "react-icons/fa";
+import { BiLogoPostgresql, BiLogoSpringBoot } from "react-icons/bi";
 
 const project = {
     title: "SwiftDo",
-    description: 'SwiftDo es una aplicación de organización personal que hace que las tareas y proyectos de tu día a día sean fácilmente recopilables, accesibles y priorizables, mejorando así tu productividad. \nPuedes utilizar SwiftDo en cualquier plataforma tanto en entornos de escritorio como de dispositivos móviles. \nEl proyecto surgió como mi trabajo de fin de grado (TFG) junto con varios compañeros. A día de hoy la aplicación es de código abierto y sigue en desarrollo.',
+    description:
+        "Aplicación multiplataforma para gestión y priorización de tareas, con arquitectura REST, autenticación OAuth 2.0, funcionamiento offline con sincronización automática e integración con Alexa mediante comandos de voz.",
     link: "https://github.com/SwiftDo-TFG/SwiftDo/tree/main",
     imgUrl: "https://github.com/SwiftDo-TFG/SwiftDo/blob/main/Frontend/src/assets/icon.png?raw=true",
-}
+};
 
 const project2 = {
     title: "Try&Catch",
-    description: "Try&Catch es una plataforma donde los estudiantes universitarios pueden formular preguntas y obtener respuestas de otros usuarios, lo que les permite ampliar su conocimiento y resolver dudas académicas.  \nLa plataforma también ofrece información sobre universidades y carreras, y cuenta con un equipo de administradores que gestionan la plataforma y atienden las solicitudes de los usuarios.",
+    description:
+        "Plataforma web colaborativa para estudiantes universitarios, orientada a resolver dudas académicas y facilitar el acceso a información sobre universidades y titulaciones.",
     link: "https://github.com/Alejandrodlrio/IW",
-    imgUrl: "/img/logo_TryCatch.png"
-}
-
-const projectList = [project, project2]
-
+    imgUrl: "/img/logo_TryCatch.png",
+};
 ---
 
-<div class="flex flex-col">
-    <div class="mb-10">
-        <ProjectCard {...project}>
-            {project.description.split("\n").map(parag => {
-                return(<p class="mb-3 font-normal break-words text-gray-700 dark:text-gray-400">{parag}</p>)
-            })}
-            <p class="pt-1 pb-2 text-xs text-gray-700 dark:text-gray-400"><b>{project.title}</b> fue desarrollado con: </p>
-            <div class="flex flex-row gap-4 mb-2">
-                <IconPill small={true}>
-					React Native <TbBrandReactNative/>
-				</IconPill>
-                <IconPill small={true}>
-					Node.js <FaNodeJs/>
-				</IconPill>
-                <IconPill small={true}>
-					Postgresql <BiLogoPostgresql />
-				</IconPill>
-            </div>
-        </ProjectCard>
-    </div>
-    <div class="mb-10">
-        <ProjectCard {...project2}>
-            {project.description.split("\n").map(parag => {
-                return(<p class="mb-3 font-normal break-words text-gray-700 dark:text-gray-400">{parag}</p>)
-            })}
-            <p class="pt-1 pb-2 text-xs text-gray-700 dark:text-gray-400"><b>{project2.title}</b> fue desarrollado con: </p>
-            <div class="flex flex-row gap-4 mb-2">
-                <IconPill small={true}>
-					Java <FaJava/>
-				</IconPill>
-                <IconPill small={true}>
-					Springboot <BiLogoSpringBoot />
-				</IconPill>
-                <IconPill small={true}>
-					Bootstrap <FaBootstrap />
-				</IconPill>
-            </div>
-        </ProjectCard>
-    </div>
+<div class="flex flex-col gap-8">
+    <ProjectCard {...project}>
+        <p class="mb-4 text-sm leading-6 text-gray-700 dark:text-gray-400">{project.description}</p>
+        <p class="pb-2 text-xs text-gray-700 dark:text-gray-400"><b>{project.title}</b> · Stack principal</p>
+        <div class="flex flex-wrap gap-2">
+            <IconPill small={true}>React Native <TbBrandReactNative /></IconPill>
+            <IconPill small={true}>Node.js <FaNodeJs /></IconPill>
+            <IconPill small={true}>PostgreSQL <BiLogoPostgresql /></IconPill>
+        </div>
+    </ProjectCard>
+
+    <ProjectCard {...project2}>
+        <p class="mb-4 text-sm leading-6 text-gray-700 dark:text-gray-400">{project2.description}</p>
+        <p class="pb-2 text-xs text-gray-700 dark:text-gray-400"><b>{project2.title}</b> · Stack principal</p>
+        <div class="flex flex-wrap gap-2">
+            <IconPill small={true}>Java <FaJava /></IconPill>
+            <IconPill small={true}>Spring Boot <BiLogoSpringBoot /></IconPill>
+            <IconPill small={true}>Bootstrap <FaBootstrap /></IconPill>
+        </div>
+    </ProjectCard>
 </div>
-
-

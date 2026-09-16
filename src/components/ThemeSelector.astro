@@ -1,60 +1,66 @@
 ---
-const THEMES = ["Light", "Dark", "System"]
+const THEMES = ["light", "dark", "system"];
 ---
 
+<div id="theme-switcher" class="fixed bottom-4 right-4 z-50">
+    <div id="themes-menu" class="hidden items-center gap-1 rounded-xl border border-gray-200 bg-white/90 p-1 shadow-lg backdrop-blur dark:border-gray-700 dark:bg-gray-900/90">
+        {THEMES.map((theme) => (
+            <button
+                type="button"
+                data-theme={theme}
+                class="themes-menu-option rounded-lg px-2.5 py-1.5 text-xs font-medium capitalize text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
+            >
+                {theme}
+            </button>
+        ))}
+    </div>
+    <button
+        id="theme-toggle-btn"
+        type="button"
+        aria-label="Cambiar tema"
+        class="mt-2 ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-sm shadow-lg backdrop-blur transition hover:scale-105 dark:border-gray-700 dark:bg-gray-900/90"
+    >
+        ◐
+    </button>
+</div>
+
 <script is:inline>
-    let remove = null
-    const matchMedia = window.matchMedia("(prefers-color-scheme: dark)")
-    const themesMenu = document.getElementById("themes-menu")
-  
-    const getThemePreference = () => {
-      if (typeof localStorage !== "undefined") {
-        return localStorage.getItem("theme") ?? "system"
-      }
-  
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light"
-    }
-  
-    const updateIcon = (themePreference) => {
-      document.querySelectorAll(".theme-toggle-icon").forEach((element) => {
-        element.style.scale = element.id === themePreference ? "1" : "0"
-      })
-    }
-  
+    const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    const themesMenu = document.getElementById("themes-menu");
+    const toggleButton = document.getElementById("theme-toggle-btn");
+
+    const getThemePreference = () => localStorage.getItem("theme") ?? "system";
+
     const updateTheme = () => {
-      if (remove != null) {
-        remove()
-      }
-      matchMedia.addEventListener("change", updateTheme)
-      remove = () => {
-        matchMedia.removeEventListener("change", updateTheme)
-      }
-  
-      const themePreference = getThemePreference()
-      const isDark =
-        themePreference === "dark" ||
-        (themePreference === "system" && matchMedia.matches)
-  
-      updateIcon(themePreference)
-      document.documentElement.classList[isDark ? "add" : "remove"]("dark")
-    }
-  
-    updateTheme()
-  
-    document.addEventListener("click", () => themesMenu.classList.remove("open"))
-  
-    document.getElementById("theme-toggle-btn").addEventListener("click", (e) => {
-      e.stopPropagation()
-      const isClosed = !themesMenu.classList.contains("open")
-      themesMenu.classList[isClosed ? "add" : "remove"]("open")
-    })
-  
-    document.querySelectorAll(".themes-menu-option").forEach((element) => {
-      element.addEventListener("click", (e) => {
-        localStorage.setItem("theme", e.target.innerText.toLowerCase().trim())
-        updateTheme()
-      })
-    })
-  </script>
+        const themePreference = getThemePreference();
+        const isDark = themePreference === "dark" || (themePreference === "system" && matchMedia.matches);
+        document.documentElement.classList.toggle("dark", isDark);
+        document.querySelectorAll(".themes-menu-option").forEach((button) => {
+            button.setAttribute("aria-pressed", button.dataset.theme === themePreference ? "true" : "false");
+        });
+    };
+
+    toggleButton?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        themesMenu?.classList.toggle("hidden");
+        themesMenu?.classList.toggle("flex");
+    });
+
+    document.addEventListener("click", () => {
+        themesMenu?.classList.add("hidden");
+        themesMenu?.classList.remove("flex");
+    });
+
+    document.querySelectorAll(".themes-menu-option").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            event.stopPropagation();
+            localStorage.setItem("theme", button.dataset.theme);
+            updateTheme();
+            themesMenu?.classList.add("hidden");
+            themesMenu?.classList.remove("flex");
+        });
+    });
+
+    matchMedia.addEventListener("change", updateTheme);
+    updateTheme();
+</script>

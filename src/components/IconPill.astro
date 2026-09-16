@@ -1,26 +1,18 @@
 ---
 interface Props {
-  small: boolean;
+  small?: boolean;
+  href?: string;
 }
 
-const { small } = Astro.props;
+const { small = false, href, ...rest } = Astro.props;
 ---
 
 <a
-  {...Astro.props}
+  {...rest}
+  href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class={`
-  bg-white/5 
-    border dark:border-white/10 border-gray-300 rounded-full
-    flex justify-center items-center gap-x-2
-    dark:text-white
-    text-black/70
-    transition
-    hover:scale-110 hover:bg-white/10
-    ${small ? 'py-1 px-3 text-base' : 'py-1 px-2 md:py-2 md:px-4 text-xs md:text-base '}
-  `}
-  
+  class={`inline-flex items-center justify-center gap-x-2 rounded-full border border-gray-300 bg-white/60 text-black/70 transition hover:scale-[1.02] hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white ${small ? "px-3 py-1 text-sm" : "px-3 py-2 text-sm md:px-4"}`}
 >
   <slot />
 </a>
