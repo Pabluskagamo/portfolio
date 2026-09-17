@@ -1,66 +1,273 @@
 ---
-const THEMES = ["light", "dark", "system"];
+const { variant = "default" } = Astro.props;
+
+const THEMES = [
+    {
+        id: "light",
+        label: "Claro",
+        icon: "sun",
+    },
+    {
+        id: "system",
+        label: "Sistema",
+        icon: "system",
+    },
+    {
+        id: "dark",
+        label: "Oscuro",
+        icon: "moon",
+    },
+];
 ---
 
-<div id="theme-switcher" class="fixed bottom-4 right-4 z-50">
-    <div id="themes-menu" class="hidden items-center gap-1 rounded-xl border border-gray-200 bg-white/90 p-1 shadow-lg backdrop-blur dark:border-gray-700 dark:bg-gray-900/90">
-        {THEMES.map((theme) => (
-            <button
-                type="button"
-                data-theme={theme}
-                class="themes-menu-option rounded-lg px-2.5 py-1.5 text-xs font-medium capitalize text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white"
-            >
-                {theme}
-            </button>
-        ))}
-    </div>
+<div
+    class:list={[
+        "theme-switcher relative z-50",
+        variant === "desktop" && "hidden lg:block",
+        variant === "mobile" && "flex lg:hidden",
+        variant === "default" && "hidden",
+    ]}
+>
     <button
-        id="theme-toggle-btn"
         type="button"
-        aria-label="Cambiar tema"
-        class="mt-2 ml-auto flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-sm shadow-lg backdrop-blur transition hover:scale-105 dark:border-gray-700 dark:bg-gray-900/90"
+        aria-label="Seleccionar tema"
+        aria-haspopup="menu"
+        aria-expanded="false"
+        class="theme-toggle-btn flex h-10 w-10 items-center justify-center
+            rounded-xl
+            border border-gray-200
+            bg-white/70
+            text-gray-700
+            shadow-sm
+            backdrop-blur
+            transition-all duration-200
+            hover:border-gray-300
+            hover:bg-white
+            hover:scale-105
+            dark:border-gray-800
+            dark:bg-gray-900/70
+            dark:text-gray-200
+            dark:hover:border-gray-700
+            dark:hover:bg-gray-900"
     >
-        ◐
+        <!-- Sol -->
+        <svg
+            class="theme-icon-light hidden h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.8"
+            stroke="currentColor"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 3v1.5M12 19.5V21M4.22 4.22l1.06 1.06M18.72 18.72l1.06 1.06M3 12h1.5M19.5 12H21M4.22 19.78l1.06-1.06M18.72 5.28l1.06-1.06M16.5 12a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z"
+            ></path>
+        </svg>
+
+        <!-- Sistema -->
+        <svg
+            class="theme-icon-system hidden h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.8"
+            stroke="currentColor"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v9A1.5 1.5 0 0 1 18.5 16h-13A1.5 1.5 0 0 1 4 14.5v-9ZM8 20h8M12 16v4"
+            ></path>
+        </svg>
+
+        <!-- Luna -->
+        <svg
+            class="theme-icon-dark hidden h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.8"
+            stroke="currentColor"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 12.8A8.5 8.5 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8Z"></path>
+        </svg>
     </button>
+
+    <div
+        role="menu"
+        class="themes-menu absolute right-0
+            top-full mt-2
+            hidden w-36
+            lg:bottom-full lg:top-auto lg:mt-0 lg:mb-2
+            hidden w-36
+            rounded-xl
+            border border-gray-200
+            bg-white/95
+            p-1
+            shadow-xl
+            backdrop-blur
+            dark:border-gray-800
+            dark:bg-gray-900/95"
+    >
+        {
+            THEMES.map((theme) => (
+                <button
+                    type="button"
+                    role="menuitem"
+                    data-theme={theme.id}
+                    aria-pressed="false"
+                    class="
+                        theme-option
+                        flex w-full items-center gap-3
+                        rounded-lg
+                        px-3 py-2
+                        text-sm
+                        text-gray-700
+                        transition
+                        hover:bg-gray-100
+                        dark:text-gray-200
+                        dark:hover:bg-gray-800
+                    "
+                >
+                    {theme.id === "light" && (
+                        <svg
+                            class="h-4 w-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        >
+                            <circle cx="12" cy="12" r="3.5" />
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+                        </svg>
+                    )}
+
+                    {theme.id === "system" && (
+                        <svg
+                            class="h-4 w-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        >
+                            <rect x="4" y="4" width="16" height="12" rx="1.5" />
+                            <path d="M8 20h8M12 16v4" />
+                        </svg>
+                    )}
+
+                    {theme.id === "dark" && (
+                        <svg
+                            class="h-4 w-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.8"
+                        >
+                            <path d="M21 12.8A8.5 8.5 0 0 1 11.2 3a7 7 0 1 0 9.8 9.8Z" />
+                        </svg>
+                    )}
+
+                    <span class="flex-1 text-left">{theme.label}</span>
+
+                    <span class="theme-check hidden text-yellow-500">✓</span>
+                </button>
+            ))
+        }
+    </div>
 </div>
 
-<script is:inline>
-    const matchMedia = window.matchMedia("(prefers-color-scheme: dark)");
-    const themesMenu = document.getElementById("themes-menu");
-    const toggleButton = document.getElementById("theme-toggle-btn");
+<script>
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-    const getThemePreference = () => localStorage.getItem("theme") ?? "system";
+    const getTheme = () => localStorage.getItem("theme") ?? "system";
 
-    const updateTheme = () => {
-        const themePreference = getThemePreference();
-        const isDark = themePreference === "dark" || (themePreference === "system" && matchMedia.matches);
-        document.documentElement.classList.toggle("dark", isDark);
-        document.querySelectorAll(".themes-menu-option").forEach((button) => {
-            button.setAttribute("aria-pressed", button.dataset.theme === themePreference ? "true" : "false");
+    const isDark = (theme) =>
+        theme === "dark" || (theme === "system" && mediaQuery.matches);
+
+    const applyTheme = () => {
+        const theme = getTheme();
+
+        document.documentElement.classList.toggle("dark", isDark(theme));
+
+        document.querySelectorAll(".theme-switcher").forEach((switcher) => {
+            const iconLight = switcher.querySelector(".theme-icon-light");
+            const iconSystem = switcher.querySelector(".theme-icon-system");
+            const iconDark = switcher.querySelector(".theme-icon-dark");
+
+            iconLight?.classList.toggle("hidden", theme !== "light");
+            iconSystem?.classList.toggle("hidden", theme !== "system");
+            iconDark?.classList.toggle("hidden", theme !== "dark");
+
+            switcher.querySelectorAll(".theme-option").forEach((option) => {
+                const selected = option.dataset.theme === theme;
+                const check = option.querySelector(".theme-check");
+
+                option.setAttribute(
+                    "aria-pressed",
+                    selected ? "true" : "false",
+                );
+
+                check?.classList.toggle("hidden", !selected);
+            });
         });
     };
 
-    toggleButton?.addEventListener("click", (event) => {
-        event.stopPropagation();
-        themesMenu?.classList.toggle("hidden");
-        themesMenu?.classList.toggle("flex");
-    });
+    document.querySelectorAll(".theme-switcher").forEach((switcher) => {
+        const toggleButton = switcher.querySelector(".theme-toggle-btn");
+        const menu = switcher.querySelector(".themes-menu");
+        const options = switcher.querySelectorAll(".theme-option");
 
-    document.addEventListener("click", () => {
-        themesMenu?.classList.add("hidden");
-        themesMenu?.classList.remove("flex");
-    });
+        const closeMenu = () => {
+            menu?.classList.add("hidden");
+            toggleButton?.setAttribute("aria-expanded", "false");
+        };
 
-    document.querySelectorAll(".themes-menu-option").forEach((button) => {
-        button.addEventListener("click", (event) => {
+        toggleButton?.addEventListener("click", (event) => {
             event.stopPropagation();
-            localStorage.setItem("theme", button.dataset.theme);
-            updateTheme();
-            themesMenu?.classList.add("hidden");
-            themesMenu?.classList.remove("flex");
+
+            menu?.classList.toggle("hidden");
+
+            const expanded =
+                toggleButton.getAttribute("aria-expanded") === "true";
+
+            toggleButton.setAttribute(
+                "aria-expanded",
+                expanded ? "false" : "true",
+            );
+        });
+
+        options.forEach((option) => {
+            option.addEventListener("click", (event) => {
+                event.stopPropagation();
+
+                const theme = option.dataset.theme;
+
+                if (!theme) return;
+
+                localStorage.setItem("theme", theme);
+
+                applyTheme();
+                closeMenu();
+            });
+        });
+
+        document.addEventListener("click", (event) => {
+            if (!switcher.contains(event.target)) {
+                closeMenu();
+            }
         });
     });
 
-    matchMedia.addEventListener("change", updateTheme);
-    updateTheme();
+    mediaQuery.addEventListener("change", () => {
+        if (getTheme() === "system") {
+            applyTheme();
+        }
+    });
+
+    applyTheme();
 </script>

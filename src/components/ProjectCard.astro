@@ -1,35 +1,73 @@
 ---
 interface Props {
-    title: string;
-    description: string;
-    link?: string;
-    imgUrl: string;
+	title: string;
+	description: string;
+	technologies?: string[];
+	link?: string;
+	imgUrl?: string;
 }
 
-const { title, description, link, imgUrl } = Astro.props;
+const {
+	title,
+	description,
+	technologies = [],
+	link,
+	imgUrl
+} = Astro.props;
 ---
 
-<article class="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 md:flex-row">
-    <img
-        class="h-56 w-full object-cover md:h-auto md:w-48 md:shrink-0"
-        src={imgUrl}
-        alt={`Imagen del proyecto ${title}`}
-        loading="lazy"
-    />
-    <div class="flex flex-1 flex-col justify-between p-5 leading-normal">
-        <div>
-            <h3 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h3>
-            <slot />
-        </div>
-        {link && (
-            <a
-                href={link}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="mt-4 inline-flex w-fit font-medium text-blue-600 hover:underline dark:text-blue-500"
-            >
-                Ver proyecto ↗
-            </a>
-        )}
-    </div>
+<article
+	class="flex flex-col md:flex-row overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-750 transition"
+>
+	{
+		imgUrl ? (
+			<img
+				class="w-full h-48 md:w-56 md:h-auto object-cover flex-shrink-0"
+				src={imgUrl}
+				alt={`Logo de ${title}`}
+				loading="lazy"
+			/>
+		) : (
+			<div class="w-full h-48 md:w-56 md:h-auto flex-shrink-0 flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+				<span class="text-4xl font-mono text-gray-400 dark:text-gray-600">
+					{"</>"}
+				</span>
+			</div>
+		)
+	}
+
+	<div class="flex flex-col p-5">
+		<h3 class="text-2xl font-bold text-gray-900 dark:text-white">
+			{title}
+		</h3>
+
+		<p class="mt-3 text-base leading-relaxed text-gray-600 dark:text-gray-400">
+			{description}
+		</p>
+
+		{
+			technologies.length > 0 && (
+				<div class="flex flex-wrap gap-2 mt-4">
+					{technologies.map((technology) => (
+						<span class="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+							{technology}
+						</span>
+					))}
+				</div>
+			)
+		}
+
+		{
+			link && (
+				<a
+					href={link}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="mt-5 font-medium text-blue-600 dark:text-blue-500 hover:underline"
+				>
+					Ver proyecto →
+				</a>
+			)
+		}
+	</div>
 </article>

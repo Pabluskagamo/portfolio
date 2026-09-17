@@ -1,0 +1,39 @@
+---
+import IconPill from "./IconPill.astro";
+import LinkedinIcon from "./icons/Linkedin.astro";
+import GithubIcon from "./icons/Github.astro";
+import MailIcon from "./icons/Mail.astro";
+---
+
+<div>
+	<h2 class="text-3xl font-semibold mb-4 underline">
+		¿Hablamos?
+	</h2>
+
+	<p class="text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">
+		Estoy abierto a oportunidades y proyectos relacionados con desarrollo de
+		software, Inteligencia Artificial y automatización.
+	</p>
+
+	<div class="flex flex-wrap gap-3 mt-6">
+		<IconPill href="https://www.linkedin.com/in/pablo-gamo-gonz%C3%A1lez-b48223267/">
+			<LinkedinIcon class="w-5 h-5" />
+			LinkedIn
+		</IconPill>
+
+		<IconPill href="https://github.com/pabluskagamo">
+			<GithubIcon class="w-5 h-5" />
+			GitHub
+		</IconPill>
+
+		<IconPill href="mailto:pgamogonzalez@gmail.com">
+			<MailIcon class="w-5 h-5" />
+			Email
+		</IconPill>
+	</div>
+
+	<div class="mt-8 text-sm text-gray-500 dark:text-gray-400 space-y-1">
+		<p><strong>Idiomas:</strong> Castellano (Nativo) · Inglés (B2)</p>
+		<p><strong>Otros datos:</strong> Permiso de conducir B · Disponibilidad presencial, híbrida o remota</p>
+	</div>
+</div>

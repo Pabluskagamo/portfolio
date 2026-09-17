@@ -4,37 +4,176 @@ import AboutMeIcon from "../components/icons/AboutMeIcon.astro";
 import ExperienceIcon from "../components/icons/ExperienceIcon.astro";
 import ContactIcon from "../components/icons/Contact.astro";
 import LanguageButton from "./LanguageButton.jsx";
+import ThemeSelector from "./ThemeSelector.astro";
 
 const navItems = [
-    { title: "Inicio", linkHref: "#home", icon: HomeIcon, iconSize: 20 },
-    { title: "Sobre mí", linkHref: "#aboutme", icon: AboutMeIcon, iconSize: 20 },
-    { title: "Experiencia", linkHref: "#experience", icon: ExperienceIcon, iconSize: 20 },
-    { title: "Proyectos", linkHref: "#projects", icon: ContactIcon, iconSize: 20 },
+    {
+        title: "Inicio",
+        linkHref: "#home",
+        icon: HomeIcon,
+    },
+    {
+        title: "Sobre mí",
+        linkHref: "#aboutme",
+        icon: AboutMeIcon,
+    },
+    {
+        title: "Experiencia",
+        linkHref: "#experience",
+        icon: ExperienceIcon,
+    },
+    {
+        title: "Tecnologías",
+        linkHref: "#technologies",
+        icon: ExperienceIcon,
+    },
+    {
+        title: "Educación",
+        linkHref: "#education",
+        icon: AboutMeIcon,
+    },
+    {
+        title: "Proyectos",
+        linkHref: "#projects",
+        icon: ContactIcon,
+    },
+    {
+        title: "Contacto",
+        linkHref: "#contact",
+        icon: ContactIcon,
+    },
 ];
 ---
 
-<header class="fixed inset-x-0 top-0 z-50 border-b border-gray-200/70 bg-white/80 backdrop-blur dark:border-gray-800/80 dark:bg-gray-950/80 lg:inset-y-0 lg:right-auto lg:w-52 lg:border-b-0 lg:border-r">
-    <nav class="mx-auto flex max-w-3xl items-center justify-between gap-3 px-4 py-3 lg:h-full lg:max-w-none lg:flex-col lg:items-stretch lg:px-5 lg:py-8">
-        <a href="#home" class="hidden text-sm font-semibold text-gray-900 dark:text-white lg:block">
-            Pablo Gamo
-        </a>
+<header
+    class="
+        fixed inset-x-0 top-0 z-50
+        border-b border-gray-200/70
+        bg-white/90 backdrop-blur
+        dark:border-gray-800/80
+        dark:bg-gray-950/90
 
-        <div class="flex flex-1 items-center justify-center gap-1 overflow-x-auto lg:flex-none lg:flex-col lg:items-stretch lg:justify-center lg:gap-4">
-            {navItems.map((link) => (
-                <a
-                    href={link.linkHref}
-                    class="shrink-0 rounded-lg px-2 py-2 text-sm text-gray-600 transition hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-white lg:px-3"
-                >
-                    <div class="flex items-center justify-center gap-2 lg:justify-start">
-                        <link.icon width={link.iconSize} height={link.iconSize} />
-                        <span>{link.title}</span>
-                    </div>
-                </a>
-            ))}
+        lg:inset-y-0
+        lg:right-auto
+        lg:w-52
+        lg:border-b-0
+        lg:border-r
+    "
+>
+    <nav
+        class="
+            mx-auto
+            flex max-w-7xl flex-col
+
+            lg:h-full
+            lg:max-w-none
+            lg:px-5
+            lg:py-8
+        "
+    >
+        <!-- Cabecera -->
+        <div
+            class="
+                flex items-center justify-between
+                px-4 py-3
+
+                lg:block
+                lg:px-0
+                lg:py-0
+            "
+        >
+            <a
+                href="#home"
+                class="
+                    text-sm font-semibold
+                    text-gray-900 dark:text-white
+                "
+            >
+                Pablo Gamo
+            </a>
+
+            <!-- Controles móviles -->
+            <div class="flex items-center gap-2 lg:hidden">
+                <LanguageButton client:load />
+                <ThemeSelector variant="mobile"/>
+            </div>
         </div>
 
-        <div class="hidden lg:block">
+        <!-- Navegación -->
+        <div
+            class="
+                flex items-center
+                gap-1
+                overflow-x-auto
+                border-t border-gray-100
+                px-3 py-2
+
+                dark:border-gray-800
+
+                lg:flex
+                lg:flex-1
+                lg:flex-col
+                lg:items-stretch
+                lg:justify-center
+                lg:gap-4
+                lg:overflow-visible
+                lg:border-0
+                lg:px-0
+                lg:py-0
+            "
+        >
+            {
+                navItems.map((link) => (
+                    <a
+                        href={link.linkHref}
+                        class="
+                            shrink-0
+                            rounded-lg
+                            px-3 py-2
+                            text-sm
+                            text-gray-600
+                            transition
+
+                            hover:bg-gray-100
+                            hover:text-gray-900
+
+                            dark:text-gray-300
+                            dark:hover:bg-gray-800
+                            dark:hover:text-white
+
+                            lg:px-3
+                        "
+                    >
+                        <div
+                            class="
+                                flex items-center justify-center gap-2
+                                lg:justify-start
+                            "
+                        >
+                            <link.icon
+                                width={20}
+                                height={20}
+                            />
+
+                            <span>{link.title}</span>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+
+        <!-- Controles escritorio -->
+        <div
+            class="
+                hidden
+                lg:flex
+                lg:items-center
+                lg:gap-2
+                lg:pt-6
+            "
+        >
             <LanguageButton client:load />
+            <ThemeSelector variant="desktop"/>
         </div>
     </nav>
 </header>

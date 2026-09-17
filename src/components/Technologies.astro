@@ -1,0 +1,63 @@
+---
+const TECHNOLOGIES = [
+	{
+		category: "Lenguajes",
+		items: ["Java", "SQL", "JavaScript", "TypeScript"]
+	},
+	{
+		category: "Backend",
+		items: ["Spring Boot", "Microservicios"]
+	},
+	{
+		category: "Frontend",
+		items: ["Angular", "React", "React Native", "HTML", "CSS"]
+	},
+	{
+		category: "Datos",
+		items: ["Oracle", "PostgreSQL"]
+	},
+	{
+		category: "Testing",
+		items: ["JUnit", "Mockito", "PowerMock"]
+	},
+	{
+		category: "DevOps",
+		items: ["Jenkins", "Git", "Subversion"]
+	},
+	{
+		category: "Gestión",
+		items: ["ServiceNow", "Agile"]
+	},
+	{
+		category: "IA & Automatización",
+		items: [
+			"Codex",
+			"Agentes de IA",
+			"Skills",
+			"Automatización del ciclo de desarrollo"
+		]
+	}
+];
+---
+
+<div class="grid gap-4">
+	{
+		TECHNOLOGIES.map((group) => (
+			<div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/40 p-4">
+				<h3 class="font-semibold text-gray-900 dark:text-white mb-2">
+					{group.category}
+				</h3>
+
+				<div class="flex flex-wrap gap-2">
+					{
+						group.items.map((technology) => (
+							<span class="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
+								{technology}
+							</span>
+						))
+					}
+				</div>
+			</div>
+		))
+	}
+</div>
