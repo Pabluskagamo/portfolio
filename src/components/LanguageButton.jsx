@@ -5,11 +5,13 @@ import { HiChevronDown, HiOutlineGlobeAlt, HiCheck } from "react-icons/hi2";
 const languages = [
     {
         code: "ES",
+        locale: "es",
         label: "Español",
         flag: ES,
     },
     {
         code: "EN",
+        locale: "en",
         label: "English",
         flag: GB,
     },
@@ -21,11 +23,9 @@ const LanguageButton = () => {
     const menuRef = useRef(null);
 
     useEffect(() => {
-        const savedLanguage = localStorage.getItem("language");
+        const isEnglish = window.location.pathname.startsWith("/en");
 
-        if (savedLanguage === "ES" || savedLanguage === "EN") {
-            setLanguage(savedLanguage);
-        }
+        setLanguage(isEnglish ? "EN" : "ES");
     }, []);
 
     useEffect(() => {
@@ -52,12 +52,27 @@ const LanguageButton = () => {
     const Flag = currentLanguage.flag;
 
     const changeLanguage = (code) => {
+        const selectedLanguage = languages.find(
+            (item) => item.code === code
+        );
+
+        if (!selectedLanguage) return;
+
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+
+        let newPath;
+
+        if (selectedLanguage.locale === "en") {
+            newPath = currentPath.replace(/^\/es(?=\/|$)/, "/en");
+        } else {
+            newPath = currentPath.replace(/^\/en(?=\/|$)/, "/es");
+        }
+
         setLanguage(code);
-        localStorage.setItem("language", code);
         setOpen(false);
 
-        // Aquí puedes añadir posteriormente la navegación
-        // a la versión /en o /es del portfolio.
+        window.location.href = `${newPath}${currentHash}`;
     };
 
     return (
@@ -98,9 +113,8 @@ const LanguageButton = () => {
                 <span>{currentLanguage.code}</span>
 
                 <HiChevronDown
-                    className={`h-4 w-4 transition-transform duration-200 ${
-                        open ? "rotate-180" : ""
-                    }`}
+                    className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""
+                        }`}
                 />
             </button>
 

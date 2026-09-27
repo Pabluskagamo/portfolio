@@ -1,50 +1,39 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
+import { getTranslations } from "../i18n/utils";
+const t = getTranslations(Astro.currentLocale);
 
 const EXPERIENCE = [
     {
-        title: "Programador Analista",
-        company: "NTT DATA",
-        description:
-            "Evolutivos de alto impacto para un sistema crítico de un importante cliente del sector energético nacional, participando en el ciclo completo de desarrollo, desde el análisis de requisitos y diseño hasta las pruebas, entrega SAT y puesta en producción.",
-        date: "Septiembre 2025 - Actualidad",
-        bullets: [
-            "Análisis de requisitos, comunicación con cliente y diseño de soluciones.",
-            "Desarrollo y testing con Java, Oracle SQL y Angular.",
-            "Coordinación y seguimiento de equipos de programadores y evolutivos.",
-            "Introducción de IA generativa y agentes (Codex) mediante skills y automatizaciones aplicadas al desarrollo y ejecución de casos de uso.",
-        ],
+        title: t.experience.experience1.title,
+        company: t.experience.experience1.company,
+        description: t.experience.experience1.description,
+        date: t.experience.experience1.date,
+        bullets: t.experience.experience1.bullets,
     },
     {
-        title: "Programador Junior",
-        company: "NTT DATA",
-        description:
-            "Desarrollo full-stack y mantenimiento evolutivo de un sistema legacy crítico para un importante cliente del sector energético nacional.",
-        date: "Mayo 2024 - Septiembre 2025",
-        bullets: [
-            "Desarrollo de funcionalidades backend y frontend con Java, Oracle SQL y Angular.",
-            "Testing unitario con JUnit y gestión de código con Git y Subversion.",
-            "Procesos CI/CD mediante Jenkins.",
-            "Gestión y resolución de incidencias mediante ServiceNow.",
-        ],
+        title: t.experience.experience2.title,
+        company: t.experience.experience2.company,
+        description: t.experience.experience2.description,
+        date: t.experience.experience2.date,
+        bullets: t.experience.experience2.bullets,
     },
     {
-        title: "Becario / Prácticas",
-        company: "NTT DATA",
-        description:
-            "Desarrollo backend con Java y Spring Boot en arquitecturas de microservicios, participando en equipos Agile y procesos de testing y CI/CD.",
-        date: "Abril 2023 - Enero 2024",
-        bullets: [
-            "Java · Spring Boot · Oracle · PostgreSQL · JUnit · Mockito · PowerMock · Git · Subversion · Jenkins",
-        ],
+        title: t.experience.experience3.title,
+        company: t.experience.experience3.company,
+        description: t.experience.experience3.description,
+        date: t.experience.experience3.date,
+        bullets: t.experience.experience3.bullets,
     },
 ];
 ---
 
 <ol class="relative border-s border-gray-200 dark:border-gray-700">
-    {EXPERIENCE.map((exp) => (
-        <li class="mb-10 ms-4 last:mb-0">
-            <ExperienceItem {...exp} />
-        </li>
-    ))}
+    {
+        EXPERIENCE.map((exp) => (
+            <li class="mb-10 ms-4 last:mb-0">
+                <ExperienceItem {...exp} />
+            </li>
+        ))
+    }
 </ol>

@@ -1,39 +1,41 @@
 ---
+import { getTranslations } from "../i18n/utils";
+const t = getTranslations(Astro.currentLocale);
 ---
 
 <div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/40 p-5">
 
 	<div class="flex flex-col gap-1">
 		<h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-			Grado en Ingeniería del Software
+			{t.education.degree}
 		</h3>
 
 		<p class="text-sm text-gray-500 dark:text-gray-400">
-			Universidad Complutense de Madrid · Promoción 2024
+			{t.education.college}
 		</p>
 	</div>
 
 	<div class="flex flex-wrap gap-3 mt-5">
 		<span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-sm font-medium">
-			Nota media: 8,3/10
+			{t.education.grades}: 8,3/10
 		</span>
 
 		<span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-sm font-medium">
-			7 Matrículas de Honor
+			{t.education.honoursDegrees}
 		</span>
 	</div>
 
 	<div class="mt-5">
 		<p class="text-sm text-gray-500 dark:text-gray-400">
-			Reconocimiento académico
+			{t.education.phrase1}
 		</p>
 
 		<p class="mt-1 font-semibold text-gray-900 dark:text-white">
-			Diploma al Mejor Expediente Académico
+			{t.education.phrase2}
 		</p>
 
 		<p class="text-sm text-gray-500 dark:text-gray-400">
-			Grado en Ingeniería del Software · Promoción 2024
+			{t.education.phrase3}
 		</p>
 	</div>
 

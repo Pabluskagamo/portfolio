@@ -1,62 +1,29 @@
 ---
-const TECHNOLOGIES = [
-	{
-		category: "Lenguajes",
-		items: ["Java", "SQL", "JavaScript", "TypeScript"]
-	},
-	{
-		category: "Backend",
-		items: ["Spring Boot", "Microservicios"]
-	},
-	{
-		category: "Frontend",
-		items: ["Angular", "React", "React Native", "HTML", "CSS"]
-	},
-	{
-		category: "Datos",
-		items: ["Oracle", "PostgreSQL"]
-	},
-	{
-		category: "Testing",
-		items: ["JUnit", "Mockito", "PowerMock"]
-	},
-	{
-		category: "DevOps",
-		items: ["Jenkins", "Git", "Subversion"]
-	},
-	{
-		category: "Gestión",
-		items: ["ServiceNow", "Agile"]
-	},
-	{
-		category: "IA & Automatización",
-		items: [
-			"Codex",
-			"Agentes de IA",
-			"Skills",
-			"Automatización del ciclo de desarrollo"
-		]
-	}
+import { getTranslations } from "../i18n/utils";
+const t = getTranslations(Astro.currentLocale);
+
+const technologies = [
+    [t.technologies.categories.languages, "Java · SQL · JavaScript · TypeScript"],
+    ["Backend", "Spring Boot · Microservicios"],
+    ["Frontend", "Angular · React · React Native · HTML · CSS"],
+    [t.technologies.categories.data, "Oracle · PostgreSQL"],
+    ["Testing", "JUnit · Mockito · PowerMock"],
+    ["DevOps", "Jenkins · Git · Subversion"],
+    [t.technologies.categories.management, "ServiceNow · Agile"],
+    [t.technologies.categories.IA, "Codex · "+t.technologies.categories.IA_items.agents+ " · Skills · "+ t.technologies.categories.IA_items.automation],
 ];
 ---
 
-<div class="grid gap-4">
+<div class="grid gap-4 sm:grid-cols-2">
 	{
-		TECHNOLOGIES.map((group) => (
-			<div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/40 p-4">
-				<h3 class="font-semibold text-gray-900 dark:text-white mb-2">
-					{group.category}
+		technologies.map(([label, values]) => (
+			<div class="rounded-lg border border-gray-200 bg-white/60 p-4 dark:border-gray-800 dark:bg-white/[0.03]">
+				<h3 class="text-sm font-semibold text-gray-900 dark:text-white">
+					{label}
 				</h3>
-
-				<div class="flex flex-wrap gap-2">
-					{
-						group.items.map((technology) => (
-							<span class="px-3 py-1 text-sm rounded-full bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300">
-								{technology}
-							</span>
-						))
-					}
-				</div>
+				<p class="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+					{values}
+				</p>
 			</div>
 		))
 	}

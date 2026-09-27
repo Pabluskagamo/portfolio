@@ -5,40 +5,43 @@ import ExperienceIcon from "../components/icons/ExperienceIcon.astro";
 import ContactIcon from "../components/icons/Contact.astro";
 import LanguageButton from "./LanguageButton.jsx";
 import ThemeSelector from "./ThemeSelector.astro";
+import { getTranslations } from "../i18n/utils";
+
+const t = getTranslations(Astro.currentLocale);
 
 const navItems = [
     {
-        title: "Inicio",
+        title: t.nav.home,
         linkHref: "#home",
         icon: HomeIcon,
     },
     {
-        title: "Sobre mí",
+        title: t.nav.about,
         linkHref: "#aboutme",
         icon: AboutMeIcon,
     },
     {
-        title: "Experiencia",
+        title: t.nav.experience,
         linkHref: "#experience",
         icon: ExperienceIcon,
     },
     {
-        title: "Tecnologías",
+        title: t.nav.technologies,
         linkHref: "#technologies",
         icon: ExperienceIcon,
     },
     {
-        title: "Educación",
+        title: t.nav.education,
         linkHref: "#education",
         icon: AboutMeIcon,
     },
     {
-        title: "Proyectos",
+        title: t.nav.projects,
         linkHref: "#projects",
         icon: ContactIcon,
     },
     {
-        title: "Contacto",
+        title:  t.nav.contact,
         linkHref: "#contact",
         icon: ContactIcon,
     },

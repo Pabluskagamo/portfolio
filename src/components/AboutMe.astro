@@ -1,28 +1,30 @@
+---
+import { getTranslations } from "../i18n/utils";
+const t = getTranslations(Astro.currentLocale);
+---
+
 <div
     class="space-y-5 text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-400"
 >
     <p>
-        Ingeniero de Software con experiencia en desarrollo full-stack y
-        evolución de sistemas críticos para el negocio. Actualmente desempeño
-        funciones de
+        {t.about.paragraph1}
         <strong class="text-gray-900 dark:text-white"
-            >Programador Analista</strong
-        >, participando en el ciclo completo de desarrollo.
+            >{t.about.role}</strong
+        >{t.about.paragraph1End}
     </p>
 
     <p>
-        En los últimos años me he especializado también en la aplicación de
+        {t.about.paragraph2}
         <strong class="text-gray-900 dark:text-white">
-            Inteligencia Artificial al desarrollo de software
-        </strong>, trabajando con agentes, <i>skills</i> y automatizaciones orientadas
-        a optimizar procesos, mejorar la productividad y aumentar la calidad del desarrollo.
+            {t.about.skill1}
+        </strong>{t.about.paragraph2_1}<i>{t.about.skill2}</i>{t.about.paragraph2End}
     </p>
 
     <p>
-        Me interesa especialmente la combinación de
+        {t.about.paragraph3}
         <strong class="text-gray-900 dark:text-white">
-            ingeniería de software, IA aplicada y automatización
+            {t.about.paragraph3Skill}
         </strong>
-        para desarrollar soluciones y procesos más eficientes.
+        {t.about.paragraph3End}
     </p>
 </div>
