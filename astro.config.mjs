@@ -5,6 +5,7 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
     site: "https://pabluskagamo.github.io",
     base: "/portfolio",
+    trailingSlash: "always",
 
     integrations: [
         tailwind(),
@@ -16,6 +17,7 @@ export default defineConfig({
         locales: ["es", "en"],
         routing: {
             prefixDefaultLocale: true,
+            redirectToDefaultLocale: true,
         },
     },
 });

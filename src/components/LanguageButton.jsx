@@ -20,7 +20,8 @@ const LanguageButton = () => {
     const menuRef = useRef(null);
 
     useEffect(() => {
-        const isEnglish = window.location.pathname.startsWith("/en");
+        const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+        const isEnglish = window.location.pathname.startsWith(`${base}/en`);
 
         setLanguage(isEnglish ? "EN" : "ES");
     }, []);
@@ -55,13 +56,20 @@ const LanguageButton = () => {
 
         const currentPath = window.location.pathname;
         const currentHash = window.location.hash;
+        const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
         let newPath;
 
         if (selectedLanguage.locale === "en") {
-            newPath = currentPath.replace(/^\/es(?=\/|$)/, "/en");
+            newPath = currentPath.replace(
+                new RegExp(`^${base}/es(?=/|$)`),
+                `${base}/en`
+            );
         } else {
-            newPath = currentPath.replace(/^\/en(?=\/|$)/, "/es");
+            newPath = currentPath.replace(
+                new RegExp(`^${base}/en(?=/|$)`),
+                `${base}/es`
+            );
         }
 
         setLanguage(code);
