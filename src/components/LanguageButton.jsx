@@ -1,19 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { ES, GB } from "country-flag-icons/react/3x2";
 import { HiChevronDown, HiOutlineGlobeAlt, HiCheck } from "react-icons/hi2";
 
 const languages = [
     {
         code: "ES",
         locale: "es",
-        label: "Español",
-        flag: ES,
+        label: "Español"
     },
     {
         code: "EN",
         locale: "en",
-        label: "English",
-        flag: GB,
+        label: "English"
     },
 ];
 
@@ -48,8 +45,6 @@ const LanguageButton = () => {
     const currentLanguage = languages.find(
         (item) => item.code === language
     );
-
-    const Flag = currentLanguage.flag;
 
     const changeLanguage = (code) => {
         const selectedLanguage = languages.find(
@@ -105,11 +100,6 @@ const LanguageButton = () => {
             >
                 <HiOutlineGlobeAlt className="h-4 w-4 text-gray-500 dark:text-gray-400" />
 
-                <Flag
-                    title={currentLanguage.label}
-                    className="h-4 w-6 rounded-sm object-cover"
-                />
-
                 <span>{currentLanguage.code}</span>
 
                 <HiChevronDown
@@ -136,7 +126,7 @@ const LanguageButton = () => {
                         lg:bottom-full lg:top-auto lg:mt-0 lg:mb-2
                     "
                 >
-                    {languages.map(({ code, label, flag: LanguageFlag }) => (
+                    {languages.map(({ code, label }) => (
                         <button
                             key={code}
                             type="button"
@@ -154,10 +144,6 @@ const LanguageButton = () => {
                                 dark:hover:bg-gray-800
                             "
                         >
-                            <LanguageFlag
-                                title={label}
-                                className="h-4 w-6 rounded-sm object-cover"
-                            />
 
                             <span className="flex-1 text-left">
                                 {label}

@@ -182,11 +182,20 @@ const THEMES = [
 </div>
 
 <script>
+    type Theme = "light" | "system" | "dark";
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-    const getTheme = () => localStorage.getItem("theme") ?? "system";
+    const getTheme = (): Theme => {
+        const theme = localStorage.getItem("theme");
 
-    const isDark = (theme) =>
+        if (theme === "light" || theme === "system" || theme === "dark") {
+            return theme;
+        }
+
+        return "system";
+    };
+
+    const isDark = (theme: Theme): boolean =>
         theme === "dark" || (theme === "system" && mediaQuery.matches);
 
     const applyTheme = () => {
@@ -203,24 +212,27 @@ const THEMES = [
             iconSystem?.classList.toggle("hidden", theme !== "system");
             iconDark?.classList.toggle("hidden", theme !== "dark");
 
-            switcher.querySelectorAll(".theme-option").forEach((option) => {
-                const selected = option.dataset.theme === theme;
-                const check = option.querySelector(".theme-check");
+            switcher
+                .querySelectorAll<HTMLButtonElement>(".theme-option")
+                .forEach((option) => {
+                    const selected = option.dataset.theme === theme;
+                    const check = option.querySelector(".theme-check");
 
-                option.setAttribute(
-                    "aria-pressed",
-                    selected ? "true" : "false",
-                );
+                    option.setAttribute(
+                        "aria-pressed",
+                        selected ? "true" : "false",
+                    );
 
-                check?.classList.toggle("hidden", !selected);
-            });
+                    check?.classList.toggle("hidden", !selected);
+                });
         });
     };
 
     document.querySelectorAll(".theme-switcher").forEach((switcher) => {
         const toggleButton = switcher.querySelector(".theme-toggle-btn");
         const menu = switcher.querySelector(".themes-menu");
-        const options = switcher.querySelectorAll(".theme-option");
+        const options =
+            switcher.querySelectorAll<HTMLButtonElement>(".theme-option");
 
         const closeMenu = () => {
             menu?.classList.add("hidden");
@@ -257,7 +269,12 @@ const THEMES = [
         });
 
         document.addEventListener("click", (event) => {
-            if (!switcher.contains(event.target)) {
+            if (!(event.target instanceof Node)) {
+                closeMenu();
+                return;
+            }
+
+            if (!switcher?.contains(event.target)) {
                 closeMenu();
             }
         });
