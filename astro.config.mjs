@@ -1,11 +1,17 @@
-import { defineConfig } from 'astro/config';
-import react from '@astrojs/react';
+import { defineConfig } from "astro/config";
+import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 
-// https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), react()],
-  i18n: {
+    site: "https://pabluskagamo.github.io",
+    base: "/portfolio",
+
+    integrations: [
+        tailwind(),
+        react(),
+    ],
+
+    i18n: {
         defaultLocale: "es",
         locales: ["es", "en"],
         routing: {
