@@ -88,7 +88,7 @@ export const es = {
         degree: "Grado en Ingeniería del Software",
         college: "Universidad Complutense de Madrid · Promoción 2024",
         grades: "Nota media",
-        honoursDegrees: "7 Matrículas de Honor",
+        honoursDegrees: "8 Matrículas de Honor",
         phrase1: "Reconocimiento académico",
         phrase2: "Diploma al Mejor Expediente Académico",
         phrase3: "Grado en Ingeniería del Software · Promoción 2024"

@@ -85,7 +85,7 @@ export const en = {
         "degree": "BSc in Software Engineering",
         "college": "Complutense University of Madrid · Class of 2024",
         "grades": "Average grade",
-        "honoursDegrees": "7 Honors",
+        "honoursDegrees": "8 Honors",
         "phrase1": "Academic Recognition",
         "phrase2": "Award for Best Academic Record",
         "phrase3": "BSc in Software Engineering · Class of 2024"

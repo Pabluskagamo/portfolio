@@ -3,6 +3,9 @@ import HomeIcon from "../components/icons/Home.astro";
 import AboutMeIcon from "../components/icons/AboutMeIcon.astro";
 import ExperienceIcon from "../components/icons/ExperienceIcon.astro";
 import ContactIcon from "../components/icons/Contact.astro";
+import EducationIcon from "../components/icons/EducationIcon.astro";
+import TechnologiesIcon from "../components/icons/TechnologiesIcon.astro";
+import ProjectsIcon from "../components/icons/ProjectsIcon.astro";
 import LanguageButton from "./LanguageButton.jsx";
 import ThemeSelector from "./ThemeSelector.astro";
 import { getTranslations } from "../i18n/utils";
@@ -28,23 +31,18 @@ const navItems = [
     {
         title: t.nav.technologies,
         linkHref: "#technologies",
-        icon: ExperienceIcon,
+        icon: TechnologiesIcon,
     },
     {
         title: t.nav.education,
         linkHref: "#education",
-        icon: AboutMeIcon,
+        icon: EducationIcon,
     },
     {
         title: t.nav.projects,
         linkHref: "#projects",
-        icon: ContactIcon,
-    },
-    {
-        title:  t.nav.contact,
-        linkHref: "#contact",
-        icon: ContactIcon,
-    },
+        icon: ProjectsIcon,
+    }
 ];
 ---
 

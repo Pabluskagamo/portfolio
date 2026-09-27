@@ -1,42 +1,197 @@
 ---
 import { getTranslations } from "../i18n/utils";
+
 const t = getTranslations(Astro.currentLocale);
 ---
 
-<div class="rounded-lg border border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/40 p-5">
-
-	<div class="flex flex-col gap-1">
-		<h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-			{t.education.degree}
-		</h3>
-
-		<p class="text-sm text-gray-500 dark:text-gray-400">
-			{t.education.college}
-		</p>
+<article
+	class="group relative overflow-hidden
+		rounded-2xl
+		border border-gray-200/80
+		bg-white/70
+		p-5 sm:p-6
+		shadow-sm
+		backdrop-blur
+		transition-all duration-300
+		hover:-translate-y-0.5
+		hover:shadow-md
+		dark:border-gray-800
+		dark:bg-gray-900/60"
+>
+	<!-- Accent -->
+	<div class="absolute inset-y-0 left-0 w-1
+			bg-yellow-400
+			dark:bg-yellow-500">
 	</div>
 
-	<div class="flex flex-wrap gap-3 mt-5">
-		<span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-sm font-medium">
-			{t.education.grades}: 8,3/10
-		</span>
+	<div class="pl-3 sm:pl-4">
+		<!-- Header -->
+		<div class="flex items-start gap-4">
+			<div
+				class="flex h-11 w-11 shrink-0 items-center justify-center
+					rounded-xl
+					bg-gray-100
+					text-gray-700
+					dark:bg-gray-800
+					dark:text-gray-200"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.7"
+					class="h-5 w-5"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M12 14.5 3.5 10 12 5.5l8.5 4.5-8.5 4.5Z"></path>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M6.5 12.2V16c0 .7 2.5 2.5 5.5 2.5s5.5-1.8 5.5-2.5v-3.8"
+					></path>
+				</svg>
+			</div>
 
-		<span class="px-3 py-1 rounded-full bg-gray-100 dark:bg-gray-700 text-sm font-medium">
-			{t.education.honoursDegrees}
-		</span>
+			<div class="min-w-0">
+				<h3
+					class="text-lg sm:text-xl
+						font-semibold
+						leading-tight
+						text-gray-900
+						dark:text-white"
+				>
+					{t.education.degree}
+				</h3>
+
+				<p class="mt-1
+						text-sm
+						text-gray-500
+						dark:text-gray-400">
+					{t.education.college}
+				</p>
+			</div>
+		</div>
+
+		<!-- Academic metrics -->
+		<div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+			<div
+				class="rounded-xl
+					border border-gray-200
+					bg-gray-50
+					p-4
+					dark:border-gray-800
+					dark:bg-gray-800/50"
+			>
+				<p
+					class="text-xs font-medium uppercase tracking-wide
+						text-gray-500
+						dark:text-gray-400"
+				>
+					{t.education.grades}
+				</p>
+
+				<p class="mt-1
+						text-2xl font-bold
+						text-gray-900
+						dark:text-white">
+					8,3<span class="ml-1 text-sm font-medium text-gray-400"
+						>/10</span
+					>
+				</p>
+			</div>
+
+			<div
+				class="rounded-xl
+					border border-gray-200
+					bg-gray-50
+					p-4
+					dark:border-gray-800
+					dark:bg-gray-800/50"
+			>
+				<p
+					class="text-xs font-medium uppercase tracking-wide
+						text-gray-500
+						dark:text-gray-400"
+				>
+					{t.education.honoursDegrees}
+				</p>
+
+				<p class="mt-1
+						text-2xl font-bold
+						text-gray-900
+						dark:text-white">
+					8
+				</p>
+			</div>
+		</div>
+
+		<!-- Academic recognition -->
+		<div
+			class="mt-4
+				rounded-xl
+				border border-yellow-200/80
+				bg-yellow-50/70
+				p-4
+				dark:border-yellow-900/60
+				dark:bg-yellow-950/20"
+		>
+			<div class="flex items-start gap-3">
+				<div
+					class="mt-0.5
+						flex h-9 w-9 shrink-0 items-center justify-center
+						rounded-lg
+						bg-yellow-100
+						text-yellow-700
+						dark:bg-yellow-900/50
+						dark:text-yellow-300"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						class="h-5 w-5"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="m12 3 2.1 4.25 4.69.68-3.4 3.31.8 4.67L12 13.7l-4.19 2.21.8-4.67-3.4-3.31 4.69-.68L12 3Z"
+						></path>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M8.5 16.5 7 21l5-2.5 5 2.5-1.5-4.5"></path>
+					</svg>
+				</div>
+
+				<div>
+					<p
+						class="text-xs font-medium uppercase tracking-wide
+							text-yellow-700
+							dark:text-yellow-300"
+					>
+						{t.education.phrase1}
+					</p>
+
+					<p class="mt-1
+							font-semibold
+							text-gray-900
+							dark:text-white">
+						{t.education.phrase2}
+					</p>
+
+					<p class="mt-1
+							text-sm
+							text-gray-600
+							dark:text-gray-400">
+						{t.education.phrase3}
+					</p>
+				</div>
+			</div>
+		</div>
 	</div>
-
-	<div class="mt-5">
-		<p class="text-sm text-gray-500 dark:text-gray-400">
-			{t.education.phrase1}
-		</p>
-
-		<p class="mt-1 font-semibold text-gray-900 dark:text-white">
-			{t.education.phrase2}
-		</p>
-
-		<p class="text-sm text-gray-500 dark:text-gray-400">
-			{t.education.phrase3}
-		</p>
-	</div>
-
-</div>
+</article>
