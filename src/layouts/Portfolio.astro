@@ -12,6 +12,7 @@ import Projects from "../components/Projects.astro";
 import { getTranslations } from "../i18n/utils";
 import Education from "../components/Education.astro";
 import Technologies from "../components/Technologies.astro";
+import { HiArrowDownTray } from "react-icons/hi2";
 
 const t = getTranslations(Astro.currentLocale);
 
@@ -66,6 +67,13 @@ const technologies = [
                     <MailIcon class="size-4 md:size-5" />
                     pgamogonzalez@gmail.com
                 </IconPill>
+                <IconPill
+                    href={`${import.meta.env.BASE_URL}cv/CV Pablo Gamo Gonzalez.pdf`}
+                    download="CV Pablo Gamo Gonzalez.pdf"
+                >
+                    <HiArrowDownTray />
+                    {t.hero.downloadCv}
+                </IconPill>
             </nav>
         </div>
     </SectionContainer>
@@ -94,16 +102,16 @@ const technologies = [
         >
             {t.technologies.title}
         </h2>
-        <Technologies/>
+        <Technologies />
     </SectionContainer>
 
     <SectionContainer class="mb-14 scroll-mt-20" id="education">
         <h2
             class="mb-6 text-2xl font-semibold underline decoration-2 underline-offset-4 sm:text-3xl"
         >
-             {t.education.title}
+            {t.education.title}
         </h2>
-        <Education/>
+        <Education />
     </SectionContainer>
 
     <SectionContainer class="mb-14 scroll-mt-20" id="projects">

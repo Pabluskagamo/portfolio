@@ -12,6 +12,7 @@ export const es = {
     hero: {
         greeting: "¡Hola! Soy Pablo Gamo",
         description: "Ingeniero de Software · Programador Analista",
+        downloadCv: "Descargar CV" 
     },
 
     about: {

@@ -11,7 +11,8 @@ export const en = {
 
     "hero": {
         "greeting": "Hi! I'm Pablo Gamo",
-        "description": "Software Engineer · Software Analyst"
+        "description": "Software Engineer · Software Analyst",
+        "downloadCv": "Download Resume" 
     },
 
     "about": {

@@ -2,16 +2,17 @@
 interface Props {
   small?: boolean;
   href?: string;
+  download?: string | boolean;
 }
 
-const { small = false, href, ...rest } = Astro.props;
+const { small = false, href, download = false, ...rest } = Astro.props;
 ---
 
 <a
   {...rest}
   href={href}
-  target="_blank"
-  rel="noopener noreferrer"
+  {...download ? { download: download === true ? "" : download } : {}}
+  {...!download ? { target: "_blank", rel: "noopener noreferrer" } : {}}
   class={`inline-flex items-center justify-center gap-x-2 rounded-full border border-gray-300 bg-white/60 text-black/70 transition hover:scale-[1.02] hover:bg-white dark:border-white/10 dark:bg-white/5 dark:text-white ${small ? "px-3 py-1 text-sm" : "px-3 py-2 text-sm md:px-4"}`}
 >
   <slot />
