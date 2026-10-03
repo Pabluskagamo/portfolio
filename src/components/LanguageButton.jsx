@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { HiChevronDown, HiOutlineGlobeAlt, HiCheck } from "react-icons/hi2";
+import { navigate } from "astro:transitions/client";
 
 const languages = [
     {
@@ -75,7 +76,7 @@ const LanguageButton = () => {
         setLanguage(code);
         setOpen(false);
 
-        window.location.href = `${newPath}${currentHash}`;
+        navigate(`${newPath}${currentHash}`);
     };
 
     return (

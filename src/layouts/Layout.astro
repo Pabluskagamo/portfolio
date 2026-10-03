@@ -16,19 +16,23 @@ const { description, title } = Astro.props;
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.png`} />
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href={`${import.meta.env.BASE_URL}favicon.png`}
+		/>
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<ViewTransitions />
 	</head>
 
 	<body class="relative text-black dark:text-white overflow-x-hidden">
-
 		<div
 			class="fixed inset-0 -z-10 min-h-screen w-full bg-gray-50 dark:bg-gray-950
 			bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
 			dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
-		></div>
+		>
+		</div>
 
 		<Sidebar />
 		<slot />
@@ -54,6 +58,32 @@ const { description, title } = Astro.props;
 	@media (prefers-reduced-motion: reduce) {
 		html {
 			scroll-behavior: auto;
+		}
+	}
+
+	::view-transition-old(root),
+	::view-transition-new(root) {
+		animation-duration: 250ms;
+		animation-timing-function: ease-out;
+	}
+
+	@keyframes theme-out {
+		from {
+			opacity: 1;
+		}
+
+		to {
+			opacity: 0;
+		}
+	}
+
+	@keyframes theme-in {
+		from {
+			opacity: 0;
+		}
+
+		to {
+			opacity: 1;
 		}
 	}
 </style>

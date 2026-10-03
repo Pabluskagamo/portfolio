@@ -228,56 +228,86 @@ const THEMES = [
         });
     };
 
-    document.querySelectorAll(".theme-switcher").forEach((switcher) => {
-        const toggleButton = switcher.querySelector(".theme-toggle-btn");
-        const menu = switcher.querySelector(".themes-menu");
-        const options =
-            switcher.querySelectorAll<HTMLButtonElement>(".theme-option");
-
-        const closeMenu = () => {
-            menu?.classList.add("hidden");
-            toggleButton?.setAttribute("aria-expanded", "false");
+    const changeTheme = (theme: Theme, closeMenu: () => void): void => {
+        const updateTheme = () => {
+            localStorage.setItem("theme", theme);
+            applyTheme();
+            closeMenu();
         };
 
-        toggleButton?.addEventListener("click", (event) => {
-            event.stopPropagation();
+        if (!document.startViewTransition) {
+            updateTheme();
+            return;
+        }
 
-            menu?.classList.toggle("hidden");
+        document.startViewTransition(updateTheme);
+    };
 
-            const expanded =
-                toggleButton.getAttribute("aria-expanded") === "true";
+    const initializeThemeSelectors = (): void => {
+        document.querySelectorAll(".theme-switcher").forEach((switcher) => {
+            const toggleButton =
+                switcher.querySelector<HTMLButtonElement>(".theme-toggle-btn");
 
-            toggleButton.setAttribute(
-                "aria-expanded",
-                expanded ? "false" : "true",
-            );
-        });
+            const menu = switcher.querySelector<HTMLElement>(".themes-menu");
 
-        options.forEach((option) => {
-            option.addEventListener("click", (event) => {
+            const options =
+                switcher.querySelectorAll<HTMLButtonElement>(".theme-option");
+
+            const closeMenu = (): void => {
+                menu?.classList.add("hidden");
+                toggleButton?.setAttribute("aria-expanded", "false");
+            };
+
+            toggleButton?.addEventListener("click", (event) => {
                 event.stopPropagation();
 
-                const theme = option.dataset.theme;
+                menu?.classList.toggle("hidden");
 
-                if (!theme) return;
+                const expanded =
+                    toggleButton.getAttribute("aria-expanded") === "true";
 
-                localStorage.setItem("theme", theme);
+                toggleButton.setAttribute(
+                    "aria-expanded",
+                    expanded ? "false" : "true",
+                );
+            });
 
-                applyTheme();
-                closeMenu();
+            options.forEach((option) => {
+                option.addEventListener("click", (event) => {
+                    event.stopPropagation();
+
+                    const theme = option.dataset.theme as Theme | undefined;
+
+                    if (!theme) return;
+
+                    changeTheme(theme, closeMenu);
+                });
+            });
+
+            document.addEventListener("click", (event) => {
+                if (!(event.target instanceof Node)) {
+                    closeMenu();
+                    return;
+                }
+
+                if (!switcher.contains(event.target)) {
+                    closeMenu();
+                }
             });
         });
+    };
 
-        document.addEventListener("click", (event) => {
-            if (!(event.target instanceof Node)) {
-                closeMenu();
-                return;
-            }
+    const setupTheme = (): void => {
+        applyTheme();
+        initializeThemeSelectors();
+    };
 
-            if (!switcher?.contains(event.target)) {
-                closeMenu();
-            }
-        });
+    document.addEventListener("astro:after-swap", () => {
+        applyTheme();
+    });
+
+    document.addEventListener("astro:page-load", () => {
+        setupTheme();
     });
 
     mediaQuery.addEventListener("change", () => {
@@ -286,5 +316,5 @@ const THEMES = [
         }
     });
 
-    applyTheme();
+    setupTheme();
 </script>
