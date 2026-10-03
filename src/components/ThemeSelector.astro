@@ -228,6 +228,10 @@ const THEMES = [
         });
     };
 
+    type DocumentWithViewTransition = Document & {
+        startViewTransition?: (callback: () => void | Promise<void>) => unknown;
+    };
+
     const changeTheme = (theme: Theme, closeMenu: () => void): void => {
         const updateTheme = () => {
             localStorage.setItem("theme", theme);
@@ -235,12 +239,14 @@ const THEMES = [
             closeMenu();
         };
 
-        if (!document.startViewTransition) {
+        const viewTransitionDocument = document as DocumentWithViewTransition;
+
+        if (!viewTransitionDocument.startViewTransition) {
             updateTheme();
             return;
         }
 
-        document.startViewTransition(updateTheme);
+        viewTransitionDocument.startViewTransition(updateTheme);
     };
 
     const initializeThemeSelectors = (): void => {
